@@ -6,7 +6,7 @@ require(`dotenv/config`);
 const http = require(`http`);
 const port = process.env.PORT || 3000;
 // This is a simple server
-http.createServer().lidten(port);
+http.createServer().listen(port);
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 let coins = require("./coins.json");
