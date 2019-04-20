@@ -1,12 +1,7 @@
 const botconfig = require("./botconfig.json");
-const token = process.env.TOKEN;
+const tokenfile = require("./token.json");
 const Discord = require("discord.js");
 const fs = require("fs");
-require(`dotenv/config`);
-const http = require(`http`);
-const port = process.env.PORT || 3000;
-// This is a simple server
-http.createServer().listen(port);
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 let coins = require("./coins.json");
@@ -97,7 +92,6 @@ bot.on("message", async message => {
     .setTitle("Level Up!")
     .setColor(purple)
     .addField("New Level", curlvl + 1);
-    
 
     message.channel.send(lvlup).then(msg => {msg.delete(5000)});
   }
@@ -128,8 +122,4 @@ bot.on("message", async message => {
 
 });
 
-bot.on(`error`, err => {
-  console.log(err);
-});
-
-bot.login(token);
+bot.login(tokenfile.token);
